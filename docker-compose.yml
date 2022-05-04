@@ -1,12 +1,20 @@
 version: "3.9"
 services:
-  cbot:
+  sageview:
     build: .
+    ports:
+      - "8501:8501"
     volumes:
-      - logData:/bot/logData
-      - logs:/bot/logs
-      - storedData:/bot/storedData
+      - logData:/sageview/logData
+      - logs:/sageview/logs
+      - storedData:/sageview/storedData
+      - marketData:/sageview/marketData
+
 volumes:
   logs:
+    external: False
   logData:
+    external: False
   storedData:
+    external: False
+  marketData:

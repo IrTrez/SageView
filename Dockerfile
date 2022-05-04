@@ -1,25 +1,22 @@
 # 
 FROM python:3.9
 
-WORKDIR /bot
+WORKDIR /sageview
 
 COPY requirements.txt .
 
 RUN pip install -r requirements.txt
 
-COPY ./CryptoBotV1 ./CryptoBotV1
-COPY ./extraction ./extraction
-COPY ./strategies ./strategies
-COPY ./keys ./keys
-COPY ./storedData ./storedData
+COPY ./.streamlit ./.streamlit
+COPY ./logData ./logData
 
-COPY __init__.py .
-COPY logging.conf .
-COPY rnBot.py .
+COPY sageView.py .
+COPY sageViewLite.py .
 
-RUN mkdir ./logs
+RUN mkdir ./marketData
 RUN mkdir ./logsData
 
-# VOLUME [ "./logs", "./logsData"]
+EXPOSE 8501
 
-CMD ["python", "rnBot.py"]
+ENTRYPOINT ["streamlit", "run"]
+CMD ["sageViewLite.py"]
