@@ -1,0 +1,12 @@
+version: "3.9"
+services:
+  cbot:
+    build: .
+    volumes:
+      - logData:/bot/logData
+      - logs:/bot/logs
+      - storedData:/bot/storedData
+volumes:
+  logs:
+  logData:
+  storedData:
